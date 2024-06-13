@@ -1,9 +1,10 @@
 from flask import Blueprint, request, jsonify
-from app.models.message import Message
+from app.models import Message
+from app import db
 
 contact_bp = Blueprint('contact_bp', __name__)
 
-@contact_bp.route('/', methods=['POST'])
+@contact_bp.route('/contact', methods=['POST'])
 def contact():
     data = request.get_json()
     name = data.get('name')
@@ -15,7 +16,8 @@ def contact():
     
     try:
         new_message = Message(name=name, phone=phone, message=message)
-        new_message.save()
+        db.session.add(new_message)
+        db.session.commit()
         # Assuming send_mail is a function you have to send emails
         # send_mail(name, phone, message)
         return jsonify({"success": "Message sent successfully"}), 200

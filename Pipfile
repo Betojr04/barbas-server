@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "==1.1.4"
+flask = "*"
 flask-migrate = "*"
 flask-swagger = "*"
 flask-jwt-extended = "*"
@@ -12,6 +12,9 @@ flask-mongoengine = "*"
 flask-cors = "*"
 python-dotenv = "*"
 markupsafe = "==2.0.1"
+pymango = {extras = ["srv"], version = "*"}
+sqlalchemy = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
